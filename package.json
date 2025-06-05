@@ -1,23 +1,29 @@
 {
-  "name": "taskmorph",
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@biomejs/biome": "2.0.0-beta.6",
-    "@types/bun": "catalog:",
-    "typescript": "catalog:"
-  },
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "packages/*"
-    ],
-    "catalog": {
-      "@types/bun": "1.2.15",
-      "typescript": "5.8.3"
-    }
-  },
-  "trustedDependencies": [
-    "@biomejs/biome"
-  ]
+	"name": "taskmorph",
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@types/bun": "catalog:",
+		"husky": "9.1.7",
+		"sherif": "1.5.0",
+		"sst": "3.17.0",
+		"typescript": "catalog:"
+	},
+	"packageManager": "bun@1.2.15",
+	"private": true,
+	"scripts": {
+		"dev": "sst dev",
+		"sso": "aws sso login --sso-session=sphericon",
+		"lint:mono": "sherif --fix",
+		"lint": "biome check --write --unsafe .",
+		"prepare": "husky"
+	},
+	"trustedDependencies": ["@biomejs/biome"],
+	"type": "module",
+	"workspaces": {
+		"catalog": {
+			"@types/bun": "1.2.15",
+			"typescript": "5.8.3"
+		},
+		"packages": ["apps/*", "packages/*"]
+	}
 }
