@@ -1,3 +1,4 @@
+import { AuthRouter } from "@/routers/AuthRouter";
 import { HealthRouter } from "@/routers/HealthRouter";
 import { EnvVars } from "@/services/EnvVars";
 import { NodeSdk } from "@effect/opentelemetry";
@@ -11,13 +12,17 @@ import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base";
 import { Api } from "@sphericon/api";
-import * as Database from "@sphericon/db";
+import { layer as AuthLayer, CurrentUserMiddlewareLive } from "@sphericon/auth";
+import { Database } from "@sphericon/db";
 import dotenv from "dotenv";
 import { Duration, Effect, Layer, LogLevel, Logger, Schedule } from "effect";
 
 dotenv.config();
 
-const ApiLive = HttpApiBuilder.api(Api).pipe(Layer.provide(HealthRouter));
+const ApiLive = HttpApiBuilder.api(Api).pipe(
+	Layer.provide(HealthRouter),
+	Layer.provide(AuthRouter),
+);
 
 const DatabaseLive = Layer.unwrapEffect(
 	EnvVars.pipe(
@@ -28,7 +33,17 @@ const DatabaseLive = Layer.unwrapEffect(
 			}),
 		),
 	),
-).pipe(Layer.provide(EnvVars.Default));
+);
+
+const AuthLive = Layer.unwrapEffect(
+	EnvVars.pipe(
+		Effect.map((envVars) =>
+			AuthLayer({
+				appUrl: envVars.APP_URL,
+			}),
+		),
+	),
+);
 
 const NodeSdkLive = Layer.unwrapEffect(
 	EnvVars.OTLP_URL.pipe(
@@ -78,6 +93,8 @@ const ServerLive = HttpApiBuilder.serve(HttpMiddleware.logger).pipe(
 		}),
 	),
 	Layer.provide(ApiLive),
+	Layer.provide(CurrentUserMiddlewareLive),
+	Layer.provide(AuthLive),
 	Layer.provide(DatabaseLive),
 	Layer.provide(HttpServerLive),
 	Layer.provide(NodeSdkLive),

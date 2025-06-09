@@ -25,6 +25,7 @@
         "@opentelemetry/sdk-trace-web": "2.0.1",
         "@rocicorp/zero": "catalog:",
         "@sphericon/api": "workspace:*",
+        "@sphericon/auth": "workspace:*",
         "@sphericon/db": "workspace:*",
         "better-auth": "catalog:",
         "effect": "catalog:",
@@ -42,6 +43,21 @@
         "@effect/ai": "catalog:",
         "@effect/platform": "catalog:",
         "@effect/platform-bun": "catalog:",
+        "@sphericon/auth": "workspace:*",
+        "effect": "catalog:",
+      },
+      "devDependencies": {
+        "@effect/language-service": "catalog:",
+        "@types/bun": "catalog:",
+        "typescript": "catalog:",
+      },
+    },
+    "packages/auth": {
+      "name": "@sphericon/auth",
+      "dependencies": {
+        "@effect/platform": "catalog:",
+        "@sphericon/db": "workspace:*",
+        "better-auth": "catalog:",
         "effect": "catalog:",
       },
       "devDependencies": {
@@ -498,6 +514,8 @@
     "@simplewebauthn/server": ["@simplewebauthn/server@13.1.1", "", { "dependencies": { "@hexagon/base64": "^1.1.27", "@levischuck/tiny-cbor": "^0.2.2", "@peculiar/asn1-android": "^2.3.10", "@peculiar/asn1-ecc": "^2.3.8", "@peculiar/asn1-rsa": "^2.3.8", "@peculiar/asn1-schema": "^2.3.8", "@peculiar/asn1-x509": "^2.3.8" } }, "sha512-1hsLpRHfSuMB9ee2aAdh0Htza/X3f4djhYISrggqGe3xopNjOcePiSDkDDoPzDYaaMCrbqGP1H2TYU7bgL9PmA=="],
 
     "@sphericon/api": ["@sphericon/api@workspace:packages/api"],
+
+    "@sphericon/auth": ["@sphericon/auth@workspace:packages/auth"],
 
     "@sphericon/db": ["@sphericon/db@workspace:packages/db"],
 

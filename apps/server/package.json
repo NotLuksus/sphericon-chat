@@ -22,6 +22,7 @@
 		"@opentelemetry/sdk-trace-web": "2.0.1",
 		"@rocicorp/zero": "catalog:",
 		"@sphericon/api": "workspace:*",
+		"@sphericon/auth": "workspace:*",
 		"@sphericon/db": "workspace:*",
 		"better-auth": "catalog:",
 		"effect": "catalog:",

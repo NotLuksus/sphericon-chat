@@ -1,8 +1,7 @@
 {
-	"name": "@sphericon/api",
+	"name": "@sphericon/auth",
 	"exports": {
-		".": "./src/index.ts",
-		"./domains/*": "./src/domains/*"
+		".": "./src/index.ts"
 	},
 	"type": "module",
 	"private": true,
@@ -12,10 +11,9 @@
 		"typescript": "catalog:"
 	},
 	"dependencies": {
-		"@effect/ai": "catalog:",
 		"@effect/platform": "catalog:",
-		"@effect/platform-bun": "catalog:",
-		"@sphericon/auth": "workspace:*",
+		"@sphericon/db": "workspace:*",
+		"better-auth": "catalog:",
 		"effect": "catalog:"
 	}
 }
