@@ -1,6 +1,5 @@
 {
 	"name": "@sphericon/db",
-	"module": "index.ts",
 	"type": "module",
 	"private": true,
 	"exports": {

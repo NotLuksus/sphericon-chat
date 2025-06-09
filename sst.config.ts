@@ -1,5 +1,4 @@
 /// <reference path="./.sst/platform/config.d.ts" />
-
 export default $config({
 	app(input) {
 		return {
@@ -11,6 +10,7 @@ export default $config({
 				aws: {
 					profile: "sandbox",
 				},
+				random: "4.18.2",
 			},
 		};
 	},
@@ -18,6 +18,7 @@ export default $config({
 		await import("./infra/vpc");
 		await import("./infra/cluster");
 		await import("./infra/db");
+		await import("./infra/server");
 		return {};
 	},
 });

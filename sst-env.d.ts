@@ -20,6 +20,11 @@ declare module "sst" {
 			name: string;
 			type: "sst.aws.Function";
 		};
+		Server: {
+			service: string;
+			type: "sst.aws.Service";
+			url: string;
+		};
 		Vpc: {
 			type: "sst.aws.Vpc";
 		};

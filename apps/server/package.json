@@ -1,0 +1,30 @@
+{
+	"name": "server",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "bun --watch run src/index.ts"
+	},
+	"devDependencies": {
+		"@effect/language-service": "catalog:",
+		"@types/bun": "catalog:",
+		"typescript": "catalog:"
+	},
+	"dependencies": {
+		"@effect/ai": "catalog:",
+		"@effect/opentelemetry": "0.50.9",
+		"@effect/platform": "catalog:",
+		"@effect/platform-bun": "catalog:",
+		"@opentelemetry/sdk-metrics": "2.0.1",
+		"@opentelemetry/sdk-trace-base": "2.0.1",
+		"@opentelemetry/sdk-trace-node": "2.0.1",
+		"@opentelemetry/sdk-trace-web": "2.0.1",
+		"@rocicorp/zero": "catalog:",
+		"@sphericon/api": "workspace:*",
+		"@sphericon/db": "workspace:*",
+		"better-auth": "catalog:",
+		"effect": "catalog:",
+		"jose": "6.0.11"
+	}
+}
