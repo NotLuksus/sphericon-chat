@@ -1,0 +1,27 @@
+{
+	"name": "@sphericon/db",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": "./src/index.ts",
+		"./schema": "./src/schema/index.ts",
+		"./sql": "./src/sql.ts"
+	},
+	"scripts": {
+		"db": "sst shell -- drizzle-kit"
+	},
+	"devDependencies": {
+		"@effect/ai": "catalog:",
+		"@effect/language-service": "catalog:",
+		"@types/bun": "catalog:",
+		"@types/pg": "catalog:",
+		"drizzle-kit": "0.31.1",
+		"typescript": "catalog:"
+	},
+	"dependencies": {
+		"drizzle-orm": "0.44.2",
+		"effect": "catalog:",
+		"pg": "catalog:"
+	}
+}

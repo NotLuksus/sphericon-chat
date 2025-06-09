@@ -1,0 +1,53 @@
+services:
+  postgres:
+    container_name: sphericon-chat-db
+    image: postgres:16.2-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_DB: sphericon-chat
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - jaeger-network
+    restart: unless-stopped
+    command: |
+      postgres
+      -c wal_level=logical
+      -c max_wal_senders=10
+      -c max_replication_slots=5
+      -c hot_standby=on
+      -c hot_standby_feedback=on
+  jaeger:
+    container_name: sphericon-chat-jaeger
+    image: jaegertracing/all-in-one:latest
+    command:
+      - "--collector.otlp.http.cors.allowed-headers=*"
+      - "--collector.otlp.http.tls.enabled=false"
+    ports:
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "4317:4317"
+      - "4318:4318"
+      - "14250:14250"
+      - "14268:14268"
+      - "14269:14269"
+      - "9411:9411"
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+      - QUERY_BASE_PATH=/
+    networks:
+      - jaeger-network
+    restart: no
+
+networks:
+  jaeger-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local

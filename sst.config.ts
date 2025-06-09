@@ -3,7 +3,7 @@
 export default $config({
 	app(input) {
 		return {
-			name: "taskmorph",
+			name: "sphericon-chat",
 			removal: input?.stage === "production" ? "retain" : "remove",
 			protect: ["production"].includes(input?.stage),
 			home: "aws",
@@ -14,5 +14,10 @@ export default $config({
 			},
 		};
 	},
-	async run() {},
+	async run() {
+		await import("./infra/vpc");
+		await import("./infra/cluster");
+		await import("./infra/db");
+		return {};
+	},
 });

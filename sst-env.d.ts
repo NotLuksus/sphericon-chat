@@ -4,7 +4,26 @@
 /* deno-fmt-ignore-file */
 
 declare module "sst" {
-	export interface Resource {}
+	export interface Resource {
+		Database: {
+			clusterArn: string;
+			database: string;
+			host: string;
+			password: string;
+			port: number;
+			reader: string;
+			secretArn: string;
+			type: "sst.aws.Aurora";
+			username: string;
+		};
+		DatabaseMigrator: {
+			name: string;
+			type: "sst.aws.Function";
+		};
+		Vpc: {
+			type: "sst.aws.Vpc";
+		};
+	}
 }
 /// <reference path="sst-env.d.ts" />
 
