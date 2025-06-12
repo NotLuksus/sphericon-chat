@@ -28,6 +28,19 @@ declare module "sst" {
 		Vpc: {
 			type: "sst.aws.Vpc";
 		};
+		Web: {
+			type: "sst.aws.StaticSite";
+			url: string;
+		};
+		Zero: {
+			service: string;
+			type: "sst.aws.Service";
+			url: string;
+		};
+		"replication-bucket": {
+			name: string;
+			type: "sst.aws.Bucket";
+		};
 	}
 }
 /// <reference path="sst-env.d.ts" />

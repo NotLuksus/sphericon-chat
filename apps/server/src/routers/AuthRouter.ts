@@ -1,3 +1,4 @@
+import { EnvVars } from "@/services/EnvVars";
 import {
 	HttpApiBuilder,
 	HttpServerRequest,
@@ -13,12 +14,18 @@ const betterAuthHandler = Effect.gen(function* () {
 	const req = BunHttpServerRequest.toRequest(request);
 
 	const { auth } = yield* Auth;
+	const { APP_URL } = yield* EnvVars;
 	const res = yield* Effect.tryPromise({
 		try: () => auth.handler(req),
 		catch: (cause) => {
 			return new BetterAuthApiError({ cause });
 		},
 	}).pipe(Effect.tapError(Effect.logError));
+
+	res.headers.set("Access-Control-Allow-Origin", APP_URL);
+	res.headers.set("Access-Control-Allow-Methods", "GET, POST");
+	res.headers.set("Access-Control-Allow-Headers", "Content-Type");
+	res.headers.set("Access-Control-Allow-Credentials", "true");
 
 	return HttpServerResponse.raw(res);
 });

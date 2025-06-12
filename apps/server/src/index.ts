@@ -1,5 +1,6 @@
 import { AuthRouter } from "@/routers/AuthRouter";
 import { HealthRouter } from "@/routers/HealthRouter";
+import { ZeroRouter } from "@/routers/ZeroRouter";
 import { EnvVars } from "@/services/EnvVars";
 import { NodeSdk } from "@effect/opentelemetry";
 import {
@@ -22,6 +23,7 @@ dotenv.config();
 const ApiLive = HttpApiBuilder.api(Api).pipe(
 	Layer.provide(HealthRouter),
 	Layer.provide(AuthRouter),
+	Layer.provide(ZeroRouter),
 );
 
 const DatabaseLive = Layer.unwrapEffect(
@@ -69,6 +71,8 @@ const CorsLive = Layer.unwrapEffect(
 				allowedOrigins: [envVars.APP_URL],
 				allowedMethods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
 				allowedHeaders: ["Content-Type", "Authorization", "B3", "traceparent"],
+				exposedHeaders: ["Content-Length"],
+				maxAge: 600,
 				credentials: true,
 			}),
 		),
@@ -83,7 +87,6 @@ const HttpServerLive = Layer.unwrapEffect(
 
 const ServerLive = HttpApiBuilder.serve(HttpMiddleware.logger).pipe(
 	HttpServer.withLogAddress,
-	Layer.provide(CorsLive),
 	Layer.provide(
 		HttpApiScalar.layer({
 			scalar: {
@@ -98,6 +101,7 @@ const ServerLive = HttpApiBuilder.serve(HttpMiddleware.logger).pipe(
 	Layer.provide(DatabaseLive),
 	Layer.provide(HttpServerLive),
 	Layer.provide(NodeSdkLive),
+	Layer.provide(CorsLive),
 	Layer.provide(EnvVars.Default),
 );
 

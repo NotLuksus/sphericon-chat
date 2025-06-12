@@ -17,7 +17,6 @@ export type Config = {
 
 const makeService = Effect.fn("makeAuthService")(function* (config: Config) {
 	const { db } = yield* Database.Database;
-
 	const auth = betterAuth({
 		database: drizzleAdapter(db, {
 			provider: "pg",

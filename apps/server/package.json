@@ -24,6 +24,7 @@
 		"@sphericon/api": "workspace:*",
 		"@sphericon/auth": "workspace:*",
 		"@sphericon/db": "workspace:*",
+		"@sphericon/zero": "workspace:*",
 		"better-auth": "catalog:",
 		"effect": "catalog:",
 		"jose": "6.0.11"

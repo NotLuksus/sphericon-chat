@@ -11,6 +11,7 @@ export default $config({
 					profile: "sandbox",
 				},
 				random: "4.18.2",
+				command: "1.1.0",
 			},
 		};
 	},
@@ -19,6 +20,8 @@ export default $config({
 		await import("./infra/cluster");
 		await import("./infra/db");
 		await import("./infra/server");
+		await import("./infra/web");
+		await import("./infra/zero");
 		return {};
 	},
 });

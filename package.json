@@ -33,6 +33,7 @@
 			"effect": "3.16.4",
 			"pg": "8.16.0"
 		},
-		"packages": ["apps/*", "packages/*"]
+		"packages": ["apps/*", "packages/*"],
+		"trustedDependencies": ["@rocicorp/zero-sqlite3"]
 	}
 }

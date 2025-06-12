@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import { pgTable } from "drizzle-orm/pg-core";
 import { usersTable } from "./usersTable";
 
@@ -18,4 +19,11 @@ export const accountsTable = pgTable("accounts", (t) => ({
 	password: t.text(),
 	createdAt: t.timestamp().notNull(),
 	updatedAt: t.timestamp().notNull(),
+}));
+
+export const accountRelations = relations(accountsTable, ({ one }) => ({
+	user: one(usersTable, {
+		fields: [accountsTable.userId],
+		references: [usersTable.id],
+	}),
 }));

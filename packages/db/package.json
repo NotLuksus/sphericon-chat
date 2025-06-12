@@ -5,10 +5,13 @@
 	"exports": {
 		".": "./src/index.ts",
 		"./schema": "./src/schema/index.ts",
-		"./sql": "./src/sql.ts"
+		"./sql": "./src/sql.ts",
+		"./zero": "./zero-schema.gen.ts"
 	},
 	"scripts": {
-		"db": "sst shell -- drizzle-kit"
+		"db": "sst shell -- drizzle-kit",
+		"generate": "sst shell -- drizzle-zero generate --format",
+		"postinstall": "bun generate"
 	},
 	"devDependencies": {
 		"@effect/ai": "catalog:",
@@ -20,6 +23,7 @@
 	},
 	"dependencies": {
 		"drizzle-orm": "0.44.2",
+		"drizzle-zero": "^0.10.5",
 		"effect": "catalog:",
 		"pg": "catalog:"
 	}

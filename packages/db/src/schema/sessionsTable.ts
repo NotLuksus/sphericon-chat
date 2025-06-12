@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import { pgTable } from "drizzle-orm/pg-core";
 import { usersTable } from "./usersTable";
 
@@ -13,4 +14,11 @@ export const sessionsTable = pgTable("sessions", (t) => ({
 		.text()
 		.notNull()
 		.references(() => usersTable.id, { onDelete: "cascade" }),
+}));
+
+export const sessionsRelations = relations(sessionsTable, ({ one }) => ({
+	user: one(usersTable, {
+		fields: [sessionsTable.userId],
+		references: [usersTable.id],
+	}),
 }));

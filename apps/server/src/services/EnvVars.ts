@@ -12,7 +12,7 @@ export class EnvVars extends Effect.Service<EnvVars>()("EnvVars", {
 			)("ENV").pipe(Config.withDefault("dev")),
 			APP_URL: yield* Config.url("APP_URL").pipe(
 				Config.map((url) => url.toString().replace(/\/$/, "")),
-				Config.withDefault("http://localhost:3000"),
+				Config.withDefault("http://localhost:3001"),
 			),
 
 			// Database

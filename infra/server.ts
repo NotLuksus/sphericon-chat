@@ -6,7 +6,7 @@ const BETTER_AUTH_SECRET = new random.RandomString("BetterAuthSecret", {
 	length: 16,
 });
 
-export const api = new sst.aws.Service("Server", {
+export const server = new sst.aws.Service("Server", {
 	cluster,
 	image: {
 		dockerfile: "apps/server/Dockerfile",
