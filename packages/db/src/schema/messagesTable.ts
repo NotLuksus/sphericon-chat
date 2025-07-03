@@ -1,13 +1,7 @@
-import type { AiInput } from "@effect/ai";
 import { relations } from "drizzle-orm";
 import { foreignKey, pgEnum, pgTable } from "drizzle-orm/pg-core";
 import { chatsTable } from "./chatsTable";
 import { usersTable } from "./usersTable";
-
-type MessagePart =
-  | AiInput.UserMessagePart
-  | AiInput.AssistantMessagePart
-  | AiInput.ToolMessagePart;
 
 export const messageStatusEnum = pgEnum("messageStatus", [
   "streaming",
@@ -21,7 +15,7 @@ export const messagesTable = pgTable(
     status: messageStatusEnum().notNull(),
     createdAt: t.timestamp().defaultNow(),
     updatedAt: t.timestamp().defaultNow(),
-    parts: t.jsonb().$type<MessagePart[]>(),
+    content: t.text(),
     authorId: t.text().references(() => usersTable.id),
     chatId: t.text().notNull(),
     parentMessageId: t.text(),
@@ -30,11 +24,11 @@ export const messagesTable = pgTable(
     foreignKey({
       columns: [t.parentMessageId],
       foreignColumns: [t.id],
-    }),
+    }).onDelete("cascade"),
     foreignKey({
       columns: [t.chatId],
       foreignColumns: [chatsTable.id],
-    }),
+    }).onDelete("cascade"),
   ],
 );
 
@@ -55,3 +49,6 @@ export const messagesTableRelations = relations(
     }),
   }),
 );
+
+export type InsertMessage = typeof messagesTable.$inferInsert;
+export type Message = typeof messagesTable.$inferSelect;

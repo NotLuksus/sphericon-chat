@@ -6,7 +6,6 @@ export default drizzleZeroConfig(schema, {
     accountsTable: false,
     chatUsersTable: {
       chatId: true,
-      id: true,
       joinedAt: true,
       permission: true,
       userId: true,
@@ -17,6 +16,7 @@ export default drizzleZeroConfig(schema, {
       id: true,
       title: true,
       updatedAt: true,
+      activeMessageId: true,
     },
     messagesTable: {
       authorId: true,
@@ -24,7 +24,7 @@ export default drizzleZeroConfig(schema, {
       createdAt: true,
       id: true,
       parentMessageId: true,
-      parts: true,
+      content: true,
       status: true,
       updatedAt: true,
     },

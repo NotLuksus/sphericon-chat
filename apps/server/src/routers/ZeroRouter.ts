@@ -45,6 +45,7 @@ export const ZeroRouter = HttpApiBuilder.group(
 				}).pipe(
 					Effect.catchTag("BodyToJSONError", (error) => Effect.logError(error)),
 				);
+				console.log(JSON.stringify(jsonBody));
 				const { searchParams } = new URL(req.url, `http://localhost:${PORT}`);
 
 				const authHeader = raw.headers.get("Authorization");

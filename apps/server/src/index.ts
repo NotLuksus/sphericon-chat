@@ -17,6 +17,8 @@ import { layer as AuthLayer, CurrentUserMiddlewareLive } from "@sphericon/auth";
 import { Database } from "@sphericon/db";
 import dotenv from "dotenv";
 import { Duration, Effect, Layer, LogLevel, Logger, Schedule } from "effect";
+import { SseRouter } from "./routers/SseRouter";
+import { Chats } from "./services/Chats";
 
 dotenv.config();
 
@@ -24,6 +26,7 @@ const ApiLive = HttpApiBuilder.api(Api).pipe(
 	Layer.provide(HealthRouter),
 	Layer.provide(AuthRouter),
 	Layer.provide(ZeroRouter),
+	Layer.provide(SseRouter),
 );
 
 const DatabaseLive = Layer.unwrapEffect(
@@ -98,6 +101,7 @@ const ServerLive = HttpApiBuilder.serve(HttpMiddleware.logger).pipe(
 	Layer.provide(ApiLive),
 	Layer.provide(CurrentUserMiddlewareLive),
 	Layer.provide(AuthLive),
+	Layer.provide(Chats.Default),
 	Layer.provide(DatabaseLive),
 	Layer.provide(HttpServerLive),
 	Layer.provide(NodeSdkLive),

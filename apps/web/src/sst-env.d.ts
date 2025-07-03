@@ -3,10 +3,10 @@
 /* eslint-disable */
 /// <reference types="vite/client" />
 interface ImportMetaEnv {
-	readonly VITE_STAGE: string;
-	readonly VITE_SERVER_URL: string;
-	readonly VITE_ZERO_URL: string;
+  readonly VITE_STAGE: string
+  readonly VITE_SERVER_URL: string
+  readonly VITE_ZERO_URL: string
 }
 interface ImportMeta {
-	readonly env: ImportMetaEnv;
+  readonly env: ImportMetaEnv
 }

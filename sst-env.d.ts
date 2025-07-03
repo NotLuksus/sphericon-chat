@@ -4,45 +4,50 @@
 /* deno-fmt-ignore-file */
 
 declare module "sst" {
-	export interface Resource {
-		Database: {
-			clusterArn: string;
-			database: string;
-			host: string;
-			password: string;
-			port: number;
-			reader: string;
-			secretArn: string;
-			type: "sst.aws.Aurora";
-			username: string;
-		};
-		DatabaseMigrator: {
-			name: string;
-			type: "sst.aws.Function";
-		};
-		Server: {
-			service: string;
-			type: "sst.aws.Service";
-			url: string;
-		};
-		Vpc: {
-			type: "sst.aws.Vpc";
-		};
-		Web: {
-			type: "sst.aws.StaticSite";
-			url: string;
-		};
-		Zero: {
-			service: string;
-			type: "sst.aws.Service";
-			url: string;
-		};
-		"replication-bucket": {
-			name: string;
-			type: "sst.aws.Bucket";
-		};
-	}
+  export interface Resource {
+    "AnthropicApiKey": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "Database": {
+      "clusterArn": string
+      "database": string
+      "host": string
+      "password": string
+      "port": number
+      "reader": string
+      "secretArn": string
+      "type": "sst.aws.Aurora"
+      "username": string
+    }
+    "DatabaseMigrator": {
+      "name": string
+      "type": "sst.aws.Function"
+    }
+    "Server": {
+      "service": string
+      "type": "sst.aws.Service"
+      "url": string
+    }
+    "Vpc": {
+      "type": "sst.aws.Vpc"
+    }
+    "Web": {
+      "type": "sst.aws.StaticSite"
+      "url": string
+    }
+    "Zero": {
+      "service": string
+      "type": "sst.aws.Service"
+      "url": string
+    }
+    "replication-bucket": {
+      "name": string
+      "type": "sst.aws.Bucket"
+    }
+  }
 }
 /// <reference path="sst-env.d.ts" />
 
-import "sst";
+import "sst"
+export {}

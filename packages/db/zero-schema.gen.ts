@@ -176,13 +176,13 @@ export const schema = {
           >,
           serverName: "updated_at",
         },
-        parts: {
-          type: "json",
+        content: {
+          type: "string",
           optional: true,
           customType: null as unknown as ZeroCustomType<
             typeof zeroSchema,
             "messagesTable",
-            "parts"
+            "content"
           >,
         },
         authorId: {
