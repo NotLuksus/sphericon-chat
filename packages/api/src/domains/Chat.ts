@@ -5,13 +5,13 @@ export const ChatId = Schema.String.pipe(Schema.brand("ChatId"));
 export type ChatId = typeof ChatId.Type;
 
 export class ChatNotFoundError extends Schema.TaggedError<ChatNotFoundError>(
-  "ChatNotFoundError",
+	"ChatNotFoundError",
 )(
-  "ChatNotFoundError",
-  {
-    message: Schema.String,
-  },
-  HttpApiSchema.annotations({
-    status: 404,
-  }),
+	"ChatNotFoundError",
+	{
+		message: Schema.String,
+	},
+	HttpApiSchema.annotations({
+		status: 404,
+	}),
 ) {}

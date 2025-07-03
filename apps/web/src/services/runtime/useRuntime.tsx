@@ -3,8 +3,8 @@ import React from "react";
 import { RuntimeContext } from "./runtimeContext";
 
 export const useRuntime = (): LiveManagedRuntime => {
-  const runtime = React.useContext(RuntimeContext);
-  if (runtime === null)
-    throw new Error("useRuntime must be used within a RuntimeProvider");
-  return runtime;
+	const runtime = React.useContext(RuntimeContext);
+	if (runtime === null)
+		throw new Error("useRuntime must be used within a RuntimeProvider");
+	return runtime;
 };

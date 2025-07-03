@@ -1,21 +1,21 @@
 {
-  "name": "@sphericon/api",
-  "exports": {
-    ".": "./src/index.ts",
-    "./domains": "./src/domains/index.ts"
-  },
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@effect/language-service": "catalog:",
-    "@types/bun": "catalog:",
-    "typescript": "catalog:"
-  },
-  "dependencies": {
-    "@effect/ai": "catalog:",
-    "@effect/platform": "catalog:",
-    "@effect/platform-bun": "catalog:",
-    "@sphericon/auth": "workspace:*",
-    "effect": "catalog:"
-  }
+	"name": "@sphericon/api",
+	"exports": {
+		".": "./src/index.ts",
+		"./domains": "./src/domains/index.ts"
+	},
+	"type": "module",
+	"private": true,
+	"devDependencies": {
+		"@effect/language-service": "catalog:",
+		"@types/bun": "catalog:",
+		"typescript": "catalog:"
+	},
+	"dependencies": {
+		"@effect/ai": "catalog:",
+		"@effect/platform": "catalog:",
+		"@effect/platform-bun": "catalog:",
+		"@sphericon/auth": "workspace:*",
+		"effect": "catalog:"
+	}
 }
