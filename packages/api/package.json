@@ -2,7 +2,8 @@
 	"name": "@sphericon/api",
 	"exports": {
 		".": "./src/index.ts",
-		"./domains": "./src/domains/index.ts"
+		"./domains": "./src/domains/index.ts",
+		"./client": "./src/client.ts"
 	},
 	"type": "module",
 	"private": true,
